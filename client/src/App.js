@@ -20,12 +20,6 @@ function App() {
     <div className="App">
 
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-
-
       <Navbar/>
       <Routes>
         <Route path = "/" element = {<HomePage/>} />
@@ -33,9 +27,7 @@ function App() {
 
         <Route path = "/LoginPage" element = {<LoginPage/>} />
       </Routes>
-      
 
-      </Routes>
       
     </div>
   );

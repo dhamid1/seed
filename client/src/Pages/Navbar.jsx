@@ -18,8 +18,8 @@ export const Navbar = () => {
         </li>
 
 
-          <NavLink to= "/signout">Sign out</NavLink>
-        </li>
+         
+        
 
       </ul>
     </nav>
