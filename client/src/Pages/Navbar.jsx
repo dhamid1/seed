@@ -13,7 +13,12 @@ export const Navbar = () => {
           <NavLink to= "/Myjournal">My Journal</NavLink>
         </li>
         <li>
+
           <NavLink to= "/LoginPage">Log In</NavLink>
+        </li>
+
+
+          <NavLink to= "/signout">Sign out</NavLink>
         </li>
 
       </ul>
