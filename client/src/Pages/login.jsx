@@ -3,6 +3,7 @@ import { useState } from 'react';
 import React from 'react'
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
 import Images from './Images/Logo.png';
+import { API } from '../Pages/service/api';
 
 const Component = styled(Box)`
 width: 500px;
@@ -70,6 +71,11 @@ export const LoginPage = () => {
     setSignup({ ...signup, [e.target.name]: e.target.value});
   }
 
+  const signupUser = async () => {
+    let response = await API.userSignup(signup);
+    //let response = await API.signupUser(signup);
+  }
+
   return (
 
     <Component>
@@ -94,7 +100,7 @@ export const LoginPage = () => {
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'username'label="User Name" />
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'password'label="Password" />
 
-            <SignupButton>Signup</SignupButton>
+            <SignupButton onClick={()=> signupUser()}>Signup</SignupButton>
             <Typography style={{ textAlign: 'center' }}>OR</Typography>
             <LoginButton variant="contained" onClick={() => toggleSignup()}>Already have an account</LoginButton>
           </Wrapper>
