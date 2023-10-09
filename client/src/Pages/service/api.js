@@ -38,7 +38,7 @@ axiosInstance.interceptors.response.use(
 
 const processResponse = (response) => {
     if (response?.status === 200){
-        return {isSucess: true, data: response.data}
+        return {isSuccess: true, data: response.data}
     } else {
         return {
             isFailure: true,
@@ -65,7 +65,7 @@ const processError =  (error) => {
         return {
            isError: true,
            msg: API_NOTIFICATION_MESSAGES.requestFailure,
-            code: ""
+            code: "error.response.status"
         //code: ''
         }
         // Request made but no response was received

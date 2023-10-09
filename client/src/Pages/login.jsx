@@ -3,7 +3,7 @@ import { useState } from 'react';
 import React from 'react'
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
 import Images from './Images/Logo.png';
-import { API } from '../Pages/service/api';
+import { API } from '../../src/Pages/service/api.js';
 
 const Component = styled(Box)`
 width: 500px;
@@ -51,6 +51,14 @@ border-radius: 2px;
 box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%);
 `;
 
+const Error = styled(Typography)`
+  font-size: 10px;
+  color: #ff6161;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`
+
 const signupInitialValues ={
   name: '',
   username: '',
@@ -62,7 +70,7 @@ export const LoginPage = () => {
 
   const [account, toggleAccount] = useState('login');
   const [signup, setSignup] = useState(signupInitialValues);
-
+  const {error, setError} = useState('');
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   }
@@ -70,9 +78,18 @@ export const LoginPage = () => {
   const onInputChange =(e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value});
   }
-
+  console.log('Error: ' );
   const signupUser = async () => {
     let response = await API.userSignup(signup);
+    if (response.isSuccess){
+      setError('');
+      //setSignup(signupInitialValues);
+      setSignup(JSON.stringify(signupInitialValues));
+      //added JSON
+      toggleAccount(JSON.stringify('login'));
+    } else{
+      setError('Something went wrong! Please try again later.');
+    }
     //let response = await API.signupUser(signup);
   }
 
@@ -88,7 +105,9 @@ export const LoginPage = () => {
           <Wrapper>
             <TextField variant="standard" label="UserName" />
             <TextField variant="standard" label="Password" />
-            
+            { error && <Error>{error}</Error>}
+
+
             <LoginButton variant="contained">Login</LoginButton>
             <Typography style={{ textAlign: 'center' }}>OR</Typography>
             <SignupButton onClick = {() => toggleSignup()}>Create an Account</SignupButton>
@@ -100,7 +119,8 @@ export const LoginPage = () => {
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'username'label="User Name" />
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'password'label="Password" />
 
-            <SignupButton onClick={()=> signupUser()}>Signup</SignupButton>
+            { error && <Error>{error}</Error>}
+            <SignupButton onClick={() => signupUser()}>Signup</SignupButton>
             <Typography style={{ textAlign: 'center' }}>OR</Typography>
             <LoginButton variant="contained" onClick={() => toggleSignup()}>Already have an account</LoginButton>
           </Wrapper>
