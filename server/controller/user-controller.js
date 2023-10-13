@@ -1,6 +1,6 @@
 
 import bcrypt from 'bcrypt';
-import User from '../model/user.js';
+import user from '../model/user.js';
 
 
 export const signupUser = async (request, response) => {
@@ -10,13 +10,13 @@ export const signupUser = async (request, response) => {
         const hashedPassword = await bcrypt.hash(request.body.password, 20);
         //12345
         //dfvdfvqre893489heifh938heuwjdfavvfdsvdfavdfveqrfqerf3434r3q4d334ffefdf34
-        const user = {username: request.body.username, name: request.body.name, password: hashedPassword};
+        const User = {username: request.body.username, name: request.body.name, password: hashedPassword};
 
         const newUser = new User(user);
         await newUser.save();
 
-        return response.status(200).json({ msg: 'signup successful'})
+        return response.status(200).json({ msg: 'signup successful'});
     } catch (error){
-        return response.status(500).json({ msg: 'Error while signup the user'})
+        return response.status(500).json({ msg: 'Error while signup the user'});
     }
 }

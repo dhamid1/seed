@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import React from 'react'
+import React from 'react';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
+
 import Images from './Images/Logo.png';
 import { API } from '../../src/Pages/service/api.js';
 
@@ -18,7 +19,7 @@ const Image = styled('img')({
   display: 'flex',
   padding: '50px 0 0',
 
-})
+});
 
 const Wrapper = styled(Box)`
 padding: 25px 35px;
@@ -57,41 +58,76 @@ const Error = styled(Typography)`
   line-height: 0;
   margin-top: 10px;
   font-weight: 600;
-`
+`;
 
 const signupInitialValues ={
   name: '',
   username: '',
   password: '',
-}
+};
 
 
 export const LoginPage = () => {
 
   const [account, toggleAccount] = useState('login');
-  const [signup, setSignup] = useState(signupInitialValues);
+  const [signup, setSignup] = useState(JSON.stringify(signupInitialValues));
   const {error, setError} = useState('');
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   }
-
-  const onInputChange =(e) => {
-    setSignup({ ...signup, [e.target.name]: e.target.value});
-  }
-  console.log('Error: ' );
-  const signupUser = async () => {
-    let response = await API.userSignup(signup);
-    if (response.isSuccess){
-      setError('');
-      //setSignup(signupInitialValues);
-      setSignup(JSON.stringify(signupInitialValues));
-      //added JSON
-      toggleAccount(JSON.stringify('login'));
-    } else{
-      setError('Something went wrong! Please try again later.');
+  
+    const onInputChange =(e) =>{
+      setSignup({ ...signup, [e.target.name]: e.target.value});
     }
-    //let response = await API.signupUser(signup);
+    
+    console.log('Error: help me' );
+    const signupUser = async () => {
+      let response = await API.userSignup(signup);
+     
+      if (response.isSuccess){
+         setError('hello');
+        setSignup(JSON.stringify(signupInitialValues));
+         toggleAccount('login');
+       
+      } else{
+        setError('Something went wrong! Please try again later.');
+      }
+ 
   }
+  
+  
+  
+  
+  // const onInputChange =(e) =>{
+  //   setSignup({ ...signup, [e.target.name]: e.target.value});
+  // }
+  // console.log('Error: help me' );
+  // const signupUser = async () => {
+  //   let response = await API.userSignup(signup);
+  //   if (response.isSuccess){
+  //     setError('');
+  //     setSignup(JSON.stringify(signupInitialValues));
+  //      toggleAccount('login');
+     
+  //   } else{
+  //     setError('Something went wrong! Please try again later.');
+  //   }
+    
+  // const signupUser = async () => {
+  //   try {
+  //     let response = await API.userSignup(signup);
+  //     if (response.isSuccess) {
+  //       setError('');
+  //       setSignup(JSON.stringify(signupInitialValues));
+  //       toggleAccount('login');
+  //     } else {
+  //       setError('Something went wrong! Please try again later.');
+  //     }
+  //   } catch (error) {
+  //     // Handle the error here, e.g., display an error message or log it
+  //     console.error('Error during signup:', error);
+  //   }
+  // }
 
   return (
 
