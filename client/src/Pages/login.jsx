@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
-import React from 'react'
+import React from 'react';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
+
 import Images from './Images/Logo.png';
-import { API } from '../Pages/service/api';
+import { API } from '../../src/Pages/service/api.js';
 
 const Component = styled(Box)`
 width: 500px;
@@ -18,7 +19,7 @@ const Image = styled('img')({
   display: 'flex',
   padding: '50px 0 0',
 
-})
+});
 
 const Wrapper = styled(Box)`
 padding: 25px 35px;
@@ -51,30 +52,82 @@ border-radius: 2px;
 box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%);
 `;
 
+const Error = styled(Typography)`
+  font-size: 10px;
+  color: #ff6161;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`;
+
 const signupInitialValues ={
   name: '',
   username: '',
   password: '',
-}
+};
 
 
 export const LoginPage = () => {
 
   const [account, toggleAccount] = useState('login');
-  const [signup, setSignup] = useState(signupInitialValues);
-
+  const [signup, setSignup] = useState(JSON.stringify(signupInitialValues));
+  const {error, setError} = useState('');
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   }
-
-  const onInputChange =(e) => {
-    setSignup({ ...signup, [e.target.name]: e.target.value});
+  
+    const onInputChange =(e) =>{
+      setSignup({ ...signup, [e.target.name]: e.target.value});
+    }
+    
+    console.log('Error: help me' );
+    const signupUser = async () => {
+      let response = await API.userSignup(signup);
+     
+      if (response.isSuccess){
+         setError('hello');
+        setSignup(JSON.stringify(signupInitialValues));
+         toggleAccount('login');
+       
+      } else{
+        setError('Something went wrong! Please try again later.');
+      }
+ 
   }
-
-  const signupUser = async () => {
-    let response = await API.userSignup(signup);
-    //let response = await API.signupUser(signup);
-  }
+  
+  
+  
+  
+  // const onInputChange =(e) =>{
+  //   setSignup({ ...signup, [e.target.name]: e.target.value});
+  // }
+  // console.log('Error: help me' );
+  // const signupUser = async () => {
+  //   let response = await API.userSignup(signup);
+  //   if (response.isSuccess){
+  //     setError('');
+  //     setSignup(JSON.stringify(signupInitialValues));
+  //      toggleAccount('login');
+     
+  //   } else{
+  //     setError('Something went wrong! Please try again later.');
+  //   }
+    
+  // const signupUser = async () => {
+  //   try {
+  //     let response = await API.userSignup(signup);
+  //     if (response.isSuccess) {
+  //       setError('');
+  //       setSignup(JSON.stringify(signupInitialValues));
+  //       toggleAccount('login');
+  //     } else {
+  //       setError('Something went wrong! Please try again later.');
+  //     }
+  //   } catch (error) {
+  //     // Handle the error here, e.g., display an error message or log it
+  //     console.error('Error during signup:', error);
+  //   }
+  // }
 
   return (
 
@@ -88,7 +141,9 @@ export const LoginPage = () => {
           <Wrapper>
             <TextField variant="standard" label="UserName" />
             <TextField variant="standard" label="Password" />
-            
+            { error && <Error>{error}</Error>}
+
+
             <LoginButton variant="contained">Login</LoginButton>
             <Typography style={{ textAlign: 'center' }}>OR</Typography>
             <SignupButton onClick = {() => toggleSignup()}>Create an Account</SignupButton>
@@ -100,7 +155,8 @@ export const LoginPage = () => {
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'username'label="User Name" />
             <TextField variant="standard" onChange={(e)=> onInputChange(e)} name = 'password'label="Password" />
 
-            <SignupButton onClick={()=> signupUser()}>Signup</SignupButton>
+            { error && <Error>{error}</Error>}
+            <SignupButton onClick={() => signupUser()}>Signup</SignupButton>
             <Typography style={{ textAlign: 'center' }}>OR</Typography>
             <LoginButton variant="contained" onClick={() => toggleSignup()}>Already have an account</LoginButton>
           </Wrapper>
