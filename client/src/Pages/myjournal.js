@@ -44,6 +44,20 @@ export const Myjournal = () => {
     setEditIndex(-1);
   };
 
+  const handleShare = (entry) => {
+    if (navigator.share) {
+      navigator.share({
+        title: entry.title,
+        text: entry.content,
+        url: window.location.href,
+      })
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => console.error('Share failed:', error));
+    } else {
+      alert("Sharing is not supported on this browser.");
+    }
+  };
+
   return (
     <div style={containerStyle}>
       <h2>Journals</h2>
@@ -90,6 +104,7 @@ export const Myjournal = () => {
                   {entry.content}
                   <p>{entry.timestamp}</p>
                   <button onClick={() => handleEdit(index, entry)}>Edit</button>
+                  <button onClick={() => handleShare(entry)}>Share</button> {/* Add this line */}
                 </div>
               )}
             </div>
