@@ -24,11 +24,14 @@ const BottomNavbar = () => {
       <a style={linkStyle} href="#home">
         Home
       </a>
-      <a style={linkStyle} href="#about">
-        About SEED
+      <a style={linkStyle} href="/AboutUs"> {/* Link to the "About Us" page */}
+  About SEED
+</a>
+      <a style={linkStyle} href="/ContactUs"> {/* Link to the "Contact Us" page */}
+        Contact Us
       </a>
-      <a style={linkStyle} href="#contact">
-        Contact us
+      <a style={linkStyle} href="tel:988"> {/* Add the suicide hotline number */}
+        Suicide Hotline: 988
       </a>
     </div>
   );
