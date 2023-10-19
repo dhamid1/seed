@@ -7,12 +7,12 @@ const API_URL = 'http://localhost:3001';
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
-    timeout: 10000,
+    timeout: 1000000,
     headers: {
         "content-type": "application/json"
     }
 })
-console.log('Hello mf');
+
 axiosInstance.interceptors.request.use(
     function (config) {
         return config;

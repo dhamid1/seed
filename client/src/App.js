@@ -8,7 +8,7 @@ import { Navbar } from './Pages/Navbar';
 import { AccountPage } from './Pages/Account';
 import AboutUsPage from './Pages/AboutUsPage';
 import ContactUsPage from './Pages/ContactUs'; // Import your ContactUsPage component
-import BottomNavbar from './Pages/BottomNavbar';
+import BottomNavbar from './Pages/BottomNavbar.jsx';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route path="/Account" element={<AccountPage />} />
         <Route path="/AboutUs" element={<AboutUsPage />} />
         <Route path="/ContactUs" element={<ContactUsPage />} /> {/* Add the "Contact Us" route */}
+       
       </Routes>
       <BottomNavbar />
     </div>
