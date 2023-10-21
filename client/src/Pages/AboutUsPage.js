@@ -14,6 +14,7 @@ const AboutUsPage = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
+
   return (
     <div className="about-us-container">
       <div className="about-us-content">

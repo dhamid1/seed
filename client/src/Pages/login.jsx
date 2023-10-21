@@ -54,49 +54,60 @@ const Error = styled(Typography)`
   font-weight: 600;
 `;
 
-export const LoginPage = () => {
+export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
+  
   const [account, toggleAccount] = useState('login');
-  const [signup, setSignup] = useState({
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: '',
+  });
+  const [signupData, setSignupData] = useState({
     name: '',
     username: '',
     password: '',
   });
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
+  const [showPassword, setShowPassword] = useState(false);
 
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   };
 
   const onInputChange = (e) => {
-    setSignup({ ...signup, [e.target.name]: e.target.value });
+    if (account === 'login') {
+      setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    } else {
+      setSignupData({ ...signupData, [e.target.name]: e.target.value });
+    }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword); // Toggle password visibility
+    setShowPassword(!showPassword);
   };
 
-  const validateFields = () => {
-    // Check if any of the fields are empty
-    if (!signup.name || !signup.username || !signup.password) {
-      setError('All fields are required.');
-      return false;
-    }
-    return true;
-  };
-
-  const signupUser = async () => {
-    // Validate the fields before making the signup request
-    if (!validateFields()) {
-      return;
-    }
-
+  const handleLogin = async () => {
     try {
-      let response = await API.userSignup(signup);
-      console.log('API Response:', response); // Log the response
+      const response = await API.userLogin(loginData);
+
+      if (response.isSuccess) {
+        setError(''); // Clear any previous error messages
+        setLoggedIn(true); 
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError('An error occurred during login. Please try again later.');
+    }
+  };
+
+  const handleSignup = async () => {
+    try {
+      const response = await API.userSignup(signupData);
+
       if (response.isSuccess) {
         setError('Account created successfully.');
-        setSignup({
+        setSignupData({
           name: '',
           username: '',
           password: '',
@@ -107,7 +118,7 @@ export const LoginPage = () => {
       }
     } catch (error) {
       console.error('Error during signup:', error);
-      setError('An error occurred while signing up. Please try again later. Error: ' + error.message);
+      setError('An error occurred during signup. Please try again later.');
     }
   };
 
@@ -119,40 +130,65 @@ export const LoginPage = () => {
 
       {account === 'login' ? (
         <Wrapper>
-          <TextField variant="standard" label="UserName" />
+          <TextField
+            variant="standard"
+            label="Username"
+            name="username"
+            value={loginData.username}
+            onChange={onInputChange}
+          />
           <TextField
             variant="standard"
             label="Password"
-            type={showPassword ? 'text' : 'password'} // Toggle type based on showPassword state
+            name="password"
+            type={showPassword ? 'text' : 'password'}
+            value={loginData.password}
+            onChange={onInputChange}
           />
           <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'} {/* Toggle button text based on showPassword state */}
+            {showPassword ? 'Hide' : 'Show'}
           </Button>
           {error && <Error>{error}</Error>}
 
-          <LoginButton variant="contained">Login</LoginButton>
+          <LoginButton variant="contained" onClick={handleLogin}>
+            Login
+          </LoginButton>
           <Typography style={{ textAlign: 'center' }}>OR</Typography>
           <SignupButton onClick={toggleSignup}>Create an Account</SignupButton>
         </Wrapper>
       ) : (
         <Wrapper>
-          <TextField variant="standard" onChange={onInputChange} name="name" label="Enter Name" />
-          <TextField variant="standard" onChange={onInputChange} name="username" label="User Name" />
+          <TextField
+            variant="standard"
+            onChange={onInputChange}
+            name="name"
+            label="Enter Name"
+            value={signupData.name}
+          />
+          <TextField
+            variant="standard"
+            onChange={onInputChange}
+            name="username"
+            label="User Name"
+            value={signupData.username}
+          />
           <TextField
             variant="standard"
             onChange={onInputChange}
             name="password"
             label="Password"
-            type={showPassword ? 'text' : 'password'} // Toggle type based on showPassword state
+            type={showPassword ? 'text' : 'password'}
+            value={signupData.password}
           />
           <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'} {/* Toggle button text based on showPassword state */}
+            {showPassword ? 'Hide' : 'Show'}
           </Button>
           {error && <Error>{error}</Error>}
-          <SignupButton onClick={signupUser}>Sign Up</SignupButton>
+          <SignupButton onClick={handleSignup}>Sign Up</SignupButton>
           <Typography style={{ textAlign: 'center' }}>OR</Typography>
           <LoginButton variant="contained" onClick={toggleSignup}>
             Already have an account
+          
           </LoginButton>
         </Wrapper>
       )}
