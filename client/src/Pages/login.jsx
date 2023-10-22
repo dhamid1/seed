@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
-import Images from './Images/Logo.png';
+import Images from './Images/login-flower.png';
 import { API } from '../../src/Pages/service/api.js';
 
 const Component = styled(Box)`
   width: 500px;
+  height: 600px;
+  padding-top: 50px;
   margin: auto;
+  border-radius: 25px;
+  background-color: #f4c675;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.7);
   margin-top: 75px;
 `;
 
+
+const StyledTextField = styled(TextField)`
+  && {
+    /* Add your custom styles here */
+    font-size: 20px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+`;
+
 const Image = styled('img')({
   width: 150,
-  margin: 'auto',
+  marginLeft: 120,
+  marginBottom: 55,
+  marginTop: 0,
+  marginRight: 50,
+  position: 'absolute',
   display: 'flex',
-  padding: '50px 0 0',
+  padding: '0 0 0 250px',
 });
 
+
+
 const Wrapper = styled(Box)`
-  padding: 25px 35px;
+  padding: 110px 35px;
+  margin-bottom:  20px;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -30,10 +53,11 @@ const Wrapper = styled(Box)`
 
 const LoginButton = styled(Button)`
   text-transform: none;
-  background: #FB641B;
+  background: #b4c078;
   color: #fff;
   height: 45px;
-  border-radius: 2px;
+  font-size: 30px;
+  border-radius: 25px;
   margin-top: 10px;
 `;
 
@@ -42,7 +66,8 @@ const SignupButton = styled(Button)`
   background: #fff;
   color: #2874f0;
   height: 45px;
-  border-radius: 2px;
+  font-size: 25px;
+  border-radius: 25px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
 
@@ -130,14 +155,15 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
 
       {account === 'login' ? (
         <Wrapper>
-          <TextField
+          <StyledTextField
             variant="standard"
             label="Username"
             name="username"
             value={loginData.username}
             onChange={onInputChange}
           />
-          <TextField
+         
+          <StyledTextField
             variant="standard"
             label="Password"
             name="password"
@@ -145,6 +171,8 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
             value={loginData.password}
             onChange={onInputChange}
           />
+          
+          
           <Button variant="contained" onClick={togglePasswordVisibility}>
             {showPassword ? 'Hide' : 'Show'}
           </Button>
