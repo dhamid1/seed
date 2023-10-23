@@ -1,5 +1,30 @@
 import bcrypt from 'bcrypt';
 import User from '../model/user.js';
+import jwt from 'jsonwebtoken'
+
+export const loginUser = async (req, res) => {
+  const { username, password } = req.body;
+
+  // Find the user by username
+  const user = await User.findOne({ username });
+
+  if (!user) {
+    return res.status(401).json({ error: 'User not found' });
+  }
+
+  // Check if the provided password matches the stored hashed password
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    return res.status(401).json({ error: 'Invalid password' });
+  }
+
+  // Generate and send an authentication token (e.g., JWT) upon successful login
+  const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
+
+  res.status(200).json({ token });
+};
+
 
 export const signupUser = async (request, response) => {
   try {

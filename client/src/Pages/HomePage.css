@@ -1,22 +1,8 @@
 .homepage {
     text-align: center;
-    background-color: #c0dfa7; /* Light green for the background */
-    padding: 20px;
+    background-image: url('../Pages/Images/Trial.png');
+    background-size: cover;  /* Adjust as needed */
+    /*background-position: center;  /* Adjust as needed */
+    background-repeat: no-repeat;
+    /* Additional background styles (e.g., background-color) can be added here */
   }
-  
-  .header {
-    background-color: #5f9367; /* Darker green for the header */
-    padding: 20px;
-    border-radius: 10px;
-    color: #fff;
-  }
-  
-  .feature {
-    background-color: #f8d49d; /* Light yellow for feature blocks */
-    border: 2px solid #ba8b57; /* Darker yellow border */
-    border-radius: 10px;
-    margin: 20px;
-    padding: 20px;
-    color: #111111; /* Dark text for contrast */
-  }
-  
