@@ -11,7 +11,8 @@ const Component = styled(Box)`
   border-radius: 25px;
   background-color: #f4c675;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.7);
-  margin-top: 75px;
+  margin-top: 50px;
+  margin-bottom: 175px;
 `;
 
 
