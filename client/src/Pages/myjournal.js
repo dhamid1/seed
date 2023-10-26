@@ -5,7 +5,65 @@ const containerStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh',
+  minHeight: '80vh',
+  background: '#fc975f', // Gradient background
+};
+
+const inputContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  marginBottom: '10px',
+  width: '100%',
+  maxWidth: '80%',
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '10px',
+  background: 'white', // Set the background color to rgb(205, 118, 25)
+  color: 'black', // Set text color to black
+};
+
+const buttonContainerStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '80%',
+};
+
+const buttonStyle = {
+  marginLeft: '10px',
+  padding: '10px',
+  background: '#464552',
+  color: 'white',
+  border: 'none',
+  cursor: 'pointer',
+};
+
+const entryBoxStyle = {
+  border: '1px solid #ccc',
+  padding: '10px',
+  marginBottom: '10px',
+  width: '100%',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+  overflow: 'hidden',
+  background: 'white', // Set the background color to rgb(205, 118, 25)
+  color: 'black', // Set text color to black
+};
+
+const entryBoxContainerStyle = {
+  width: '100%',
+  maxWidth: '600px',
+  marginBottom:'155px',
+};
+
+const entryContentStyle = {
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  padding: '0 20px',
 };
 
 export const Myjournal = () => {
@@ -58,33 +116,46 @@ export const Myjournal = () => {
     }
   };
 
+  const truncateText = (text, maxCharacters) => {
+    if (text.length <= maxCharacters) return text;
+    const sentenceEnd = text.indexOf('.', maxCharacters);
+    if (sentenceEnd !== -1) {
+      return text.substring(0, sentenceEnd + 1) + '...';
+    }
+    return text.substring(0, maxCharacters) + '...';
+  };
+
   return (
     <div style={containerStyle}>
-      <h2>Journals</h2>
-      <div>
+      <h2 style={{ color: 'white' }}>Journals</h2>
+      <div style={inputContainerStyle}>
         <textarea
+          style={inputStyle}
           type="text"
           placeholder="Journal Title"
           value={journalEntry.title}
           onChange={handleTitleChange}
         />
+      </div>
+      <div style={inputContainerStyle}>
         <textarea
+          style={inputStyle}
           placeholder="Write your journal entry..."
           value={journalEntry.content}
           onChange={handleJournalEntryChange}
         />
-        <button onClick={handleAddEntry}>Add Entry</button>
       </div>
-      <div>
-        <button onClick={() => setShowOldEntries(!showOldEntries)}>
+      <div style={buttonContainerStyle}>
+        <button style={buttonStyle} onClick={handleAddEntry}>Add Entry</button>
+        <button style={buttonStyle} onClick={() => setShowOldEntries(!showOldEntries)}>
           {showOldEntries ? 'Hide Old Entries' : 'Show Old Entries'}
         </button>
       </div>
       {showOldEntries && (
-        <div>
-          <h3>Old Entries</h3>
+        <div style={entryBoxContainerStyle}>
+          <h3 style={{ color: 'white' }}>Old Entries</h3>
           {entries.map((entry, index) => (
-            <div key={index} className="journal-entry">
+            <div key={index} style={entryBoxStyle}>
               {editIndex === index ? (
                 <div>
                   <input
@@ -93,18 +164,23 @@ export const Myjournal = () => {
                     onChange={(e) => setEditedEntry({ ...editedEntry, title: e.target.value })}
                   />
                   <textarea
+                    style={inputStyle}
                     value={editedEntry.content}
                     onChange={(e) => setEditedEntry({ ...editedEntry, content: e.target.value })}
                   />
-                  <button onClick={() => handleSaveEdit(index)}>Save</button>
+                  <div style={buttonContainerStyle}>
+                    <button style={buttonStyle} onClick={() => handleSaveEdit(index)}>Save</button>
+                  </div>
                 </div>
               ) : (
                 <div>
                   <h4>{entry.title}</h4>
-                  {entry.content}
+                  <p style={entryContentStyle}>{truncateText(entry.content, 100)}</p>
                   <p>{entry.timestamp}</p>
-                  <button onClick={() => handleEdit(index, entry)}>Edit</button>
-                  <button onClick={() => handleShare(entry)}>Share</button> {/* Add this line */}
+                  <div style={buttonContainerStyle}>
+                    <button style={buttonStyle} onClick={() => handleEdit(index, entry)}>Edit</button>
+                    <button style={buttonStyle} onClick={() => handleShare(entry)}>Share</button>
+                  </div>
                 </div>
               )}
             </div>

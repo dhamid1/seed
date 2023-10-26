@@ -3,7 +3,7 @@ import "./BottomNavbar.css";
 import Images from './Images/footer_cloud.png'
 
 const navbarStyle = {
-  position: 'absolute',
+  position: 'fixed',
   bottom: 0,
   left: 0,
   height: 40,
@@ -13,43 +13,51 @@ const navbarStyle = {
   display: 'flex',
   justifyContent: 'space-around',
   padding: '10px 0',
+  zIndex: 1,
 };
 
 const linkStyle = {
   textDecoration: 'none',
   color: 'white',
 };
+
+const headerImageStyle = {
+  position: 'fixed', // Set position to fixed
+  width: '100%',
+  maxWidth: '100%',
+  bottom: 59, // Adjust to the desired position
+  zIndex: 1,
+  height: 60,
+};
+
 const HeaderImage = () => {
   return (
     <img
       src={Images} // Replace with the actual image path
       alt="Header Image"
-      style={{
-        width: '100%',
-        maxWidth: '100%',
-        marginTop: '20px',
-        position: 'absolute',
-      }}
+      style={headerImageStyle}
     />
   );
 };
+
 const BottomNavbar = () => {
   return (
-    <div><HeaderImage/>
-    <div style={navbarStyle}>
-      <a style={linkStyle} href="#home">
-        Home
-      </a>
-      <a style={linkStyle} href="/AboutUs"> {/* Link to the "About Us" page */}
-  About SEED
-</a>
-      <a style={linkStyle} href="/ContactUs"> {/* Link to the "Contact Us" page */}
-        Contact Us
-      </a>
-      <a style={linkStyle} href="tel:988"> {/* Add the suicide hotline number */}
-        Suicide Hotline: 988
-      </a>
-    </div>
+    <div>
+      <HeaderImage />
+      <div style={navbarStyle}>
+        <a style={linkStyle} href="#home">
+          Home
+        </a>
+        <a style={linkStyle} href="/AboutUs">
+          About SEED
+        </a>
+        <a style={linkStyle} href="/ContactUs">
+          Contact Us
+        </a>
+        <a style={linkStyle} href="tel:988">
+          Suicide Hotline: 988
+        </a>
+      </div>
     </div>
   );
 };
