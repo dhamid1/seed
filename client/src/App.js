@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import { Myjournal } from './Pages/myjournal';
+import  Ready2Go  from './Pages/Ready2Go';
 import { LoginPage } from './Pages/login';
 import { Navbar } from './Pages/Navbar';
 import { AccountPage } from './Pages/Account';
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Myjournal" element={<Myjournal />} />
+        <Route path="/Ready2Go" element={<Ready2Go />} />
         {/* Pass isLoggedIn and setLoggedIn to the LoginPage component */}
         <Route path="/LoginPage" element={<LoginPage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/Account" element={<AccountPage />} />

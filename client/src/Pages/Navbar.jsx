@@ -21,6 +21,11 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         <Image src={Images} alt="logo"/>
       </Link>
       <ul>
+      {isLoggedIn && (
+          <li>
+            <NavLink to="/Ready2Go">Ready2Go</NavLink>
+          </li>
+        )}
         {isLoggedIn && (
           <li>
             <NavLink to="/Myjournal">My Journal</NavLink>
