@@ -22,7 +22,7 @@ nav .title{
     color:white;
 }
 
-nav ul{
+nav ul {
     display:flex;
 }
 
@@ -30,7 +30,7 @@ nav ul li{
     list-style: none;
 }
 
-nav ul li a{
+nav ul li .button a{
     display: block;
     border-radius: 0.5rem;
     text-decoration: none;
@@ -42,4 +42,6 @@ nav ul li a{
 
 nav ul li a:not(.active):hover{
     background-color: rgb(121, 88, 26);
+
+
 }
