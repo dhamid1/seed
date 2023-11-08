@@ -12,6 +12,7 @@ export const Navbar = () => {
         <li>
           <NavLink to= "/Myjournal">My Journal</NavLink>
         </li>
+<<<<<<< Updated upstream
         <li>
 
           <NavLink to= "/LoginPage">Log In</NavLink>
@@ -22,6 +23,23 @@ export const Navbar = () => {
         </li>
 
       </ul>
+=======
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/Account">Account</NavLink>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/Profile">Profile</NavLink>
+          </li>
+        )}
+       </ul>
+      {isLoggedIn && (
+        <button onClick={handleLogout}>Logout</button>
+      )}
+       
+>>>>>>> Stashed changes
     </nav>
   )
 }
