@@ -1,0 +1,8 @@
+.homepage {
+    text-align: center;
+    background-image: url('../Pages/Images/Trial.png');
+    background-size: cover;  /* Adjust as needed */
+    /*background-position: center;  /* Adjust as needed */
+    background-repeat: no-repeat;
+    /* Additional background styles (e.g., background-color) can be added here */
+  }
