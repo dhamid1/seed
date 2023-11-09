@@ -7,7 +7,9 @@
     min-height: 100vh; /* Minimum height for scrolling */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
   }
-  
+  .mission-statement {
+    text-align: left;
+  }
   .about-us-content {
     margin: 0 auto;
     max-width: 800px; /* Limit content width */

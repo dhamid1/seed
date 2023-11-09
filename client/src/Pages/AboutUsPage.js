@@ -10,6 +10,7 @@ const AboutUsPage = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
+<<<<<<< Updated upstream
   // Define an array of people with their names and image sources
   const people = [
     { name: 'Person 1', image: amongUS },
@@ -19,10 +20,13 @@ const AboutUsPage = () => {
     { name: 'Person 5', image: amongUS },
   ];
 
+=======
+>>>>>>> Stashed changes
   return (
     <div className="about-us-container">
       <div className="about-us-content">
         <h1>About Us</h1>
+<<<<<<< Updated upstream
         <h2 style={{ marginLeft: '-1350px' }}>Mission Statement</h2>
         <p style={{ marginLeft: '-1350px' }}>This is the About Us page. You can replace this with your actual content.</p>
         <p style={{ marginLeft: '-1350px' }}>This is the About Us page. You can replace this with your actual content.</p>
@@ -47,6 +51,21 @@ const AboutUsPage = () => {
               <p>{person.name}</p>
               <img src={person.image} alt={person.name} />
             </div>
+=======
+        <h2 className="mission-statement" style={{ marginLeft: '5px' }}>Mission Statement</h2>
+        <p>This is the About Us page. You can replace this with your actual content.</p>
+        <h2>About the Team</h2>
+        <p>This is the About Us page. You can replace this with your actual content.</p>
+        <h2>Our Services</h2>
+        <p>Our team consists of 3 Asians, 1 Mexican, and 1 African. We are a very diverse team.</p>
+        <div className="seeds">
+          {seedPositions.map((position, index) => (
+            <div
+              key={`seed${index}`}
+              className={`seed seed${index + 1}`}
+              style={{ backgroundPosition: `${position.x}px ${position.y}px` }}
+            />
+>>>>>>> Stashed changes
           ))}
        
         </div>
