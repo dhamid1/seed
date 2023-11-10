@@ -1,5 +1,6 @@
 .homepage {
     text-align: center;
+<<<<<<< Updated upstream
     background-color: #c0dfa7; /* Light green for the background */
     padding: 20px;
   }
@@ -20,3 +21,11 @@
     color: #111111; /* Dark text for contrast */
   }
   
+=======
+    
+    background-size: cover;  /* Adjust as needed */
+   
+    background-repeat: no-repeat;
+    
+  }
+>>>>>>> Stashed changes

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
 import Images from './Images/Logo.png';
 import { API } from '../../src/Pages/service/api.js';
@@ -76,20 +77,52 @@ export const LoginPage = () => {
     setShowPassword(!showPassword); // Toggle password visibility
   };
 
+<<<<<<< Updated upstream
   const validateFields = () => {
     // Check if any of the fields are empty
     if (!signup.name || !signup.username || !signup.password) {
       setError('All fields are required.');
       return false;
+=======
+  const handleLogin = async () => {
+    try {
+      const response = await API.userLogin(loginData);
+  
+      if (response.isSuccess) {
+        setError(''); // Clear any previous error messages
+        setLoggedIn(true);
+  
+        // Reset the login form fields by setting loginData to an empty object
+        setLoginData({
+          username: '',
+          password: '',
+        });
+  
+        // Redirect the user to the 'myjournal' page
+        //('/myjournal');
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError('An error occurred during login. Please try again later.');
+>>>>>>> Stashed changes
     }
     return true;
   };
+<<<<<<< Updated upstream
 
   const signupUser = async () => {
     // Validate the fields before making the signup request
     if (!validateFields()) {
       return;
     }
+=======
+  
+  const handleSignup = async () => {
+    try {
+      const response = await API.userSignup(signupData);
+>>>>>>> Stashed changes
 
     try {
       let response = await API.userSignup(signup);
