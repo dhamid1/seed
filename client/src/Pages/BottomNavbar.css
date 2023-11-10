@@ -5,7 +5,7 @@ nav{
     display:flex;
     justify-content: space-between;
     align-items:center;
-    background-color: rgb(205, 118, 25);
+    background-color: #FC975F;
     position: sticky;
     top: 0;
 
@@ -16,7 +16,7 @@ nav .title{
     font-weight: bold;
     text-decoration: none;
     list-style-type: none;
-    color:orange;
+    color:white;
 }
 
 nav ul{
@@ -30,8 +30,9 @@ nav ul li{
 nav ul li a{
     display: block;
     border-radius: 0.5rem;
+    font-size: 30px;
     text-decoration: none;
-    color: orange;
+    color: white;
     padding: 0.5rem;
     margin: 0 0.5rem;
     border: 0.5rem;
