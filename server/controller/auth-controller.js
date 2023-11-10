@@ -9,7 +9,6 @@ export const logoutUser = (req, res) => {
   
   res.status(200).json({ message: 'Logged out successfully' });
 };
-
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 

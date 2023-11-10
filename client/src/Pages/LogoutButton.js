@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 function MyComponent() {
   const history = useNavigate();
 
-  const handleLogout = () => {
+  const handleNavigate = () => {
     // Use history to navigate to another route
-    history.replace('/loginPage');
-    
+    history.push('/loginPage');
   };
 
   return (

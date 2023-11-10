@@ -1,0 +1,14 @@
+Profile
+
+Picture
+Username
+first name, Last name 
+Month, day bday
+password change connected profiles- remove connections
+send email for connection
+save button to save new user date
+
+Login Action >> Dashboard page. 
+Look at garden
+Ready to go 
+Feed back sliders >>>>>>>> for partner(s) issues 

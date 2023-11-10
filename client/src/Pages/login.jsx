@@ -1,25 +1,49 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
-import Images from './Images/Logo.png';
+import Images from './Images/login-flower.png';
 import { API } from '../../src/Pages/service/api.js';
 
 const Component = styled(Box)`
   width: 500px;
+  height: 600px;
+  padding-top: 50px;
   margin: auto;
+  border-radius: 25px;
+  background-color: #f4c675;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.7);
-  margin-top: 75px;
+  margin-top: 50px;
+  margin-bottom: 175px;
+`;
+
+
+const StyledTextField = styled(TextField)`
+  && {
+    /* Add your custom styles here */
+    font-size: 20px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
 `;
 
 const Image = styled('img')({
   width: 150,
-  margin: 'auto',
+  marginLeft: 120,
+  marginBottom: 55,
+  marginTop: 0,
+  marginRight: 50,
+  position: 'absolute',
   display: 'flex',
-  padding: '50px 0 0',
+  padding: '0 0 0 250px',
 });
 
+
+
 const Wrapper = styled(Box)`
-  padding: 25px 35px;
+  padding: 110px 35px;
+  margin-bottom:  20px;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -31,10 +55,11 @@ const Wrapper = styled(Box)`
 
 const LoginButton = styled(Button)`
   text-transform: none;
-  background: #FB641B;
+  background: #b4c078;
   color: #fff;
   height: 45px;
-  border-radius: 2px;
+  font-size: 30px;
+  border-radius: 25px;
   margin-top: 10px;
 `;
 
@@ -43,7 +68,8 @@ const SignupButton = styled(Button)`
   background: #fff;
   color: #2874f0;
   height: 45px;
-  border-radius: 2px;
+  font-size: 25px;
+  border-radius: 25px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
 
@@ -55,26 +81,35 @@ const Error = styled(Typography)`
   font-weight: 600;
 `;
 
-export const LoginPage = () => {
+export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
+  
   const [account, toggleAccount] = useState('login');
-  const [signup, setSignup] = useState({
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: '',
+  });
+  const [signupData, setSignupData] = useState({
     name: '',
     username: '',
     password: '',
   });
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State for showing/hiding password
+  const [showPassword, setShowPassword] = useState(false);
 
   const toggleSignup = () => {
     account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
   };
 
   const onInputChange = (e) => {
-    setSignup({ ...signup, [e.target.name]: e.target.value });
+    if (account === 'login') {
+      setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    } else {
+      setSignupData({ ...signupData, [e.target.name]: e.target.value });
+    }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword); // Toggle password visibility
+    setShowPassword(!showPassword);
   };
 
 <<<<<<< Updated upstream
@@ -129,7 +164,7 @@ export const LoginPage = () => {
       console.log('API Response:', response); // Log the response
       if (response.isSuccess) {
         setError('Account created successfully.');
-        setSignup({
+        setSignupData({
           name: '',
           username: '',
           password: '',
@@ -140,7 +175,7 @@ export const LoginPage = () => {
       }
     } catch (error) {
       console.error('Error during signup:', error);
-      setError('An error occurred while signing up. Please try again later. Error: ' + error.message);
+      setError('An error occurred during signup. Please try again later.');
     }
   };
 
@@ -152,40 +187,68 @@ export const LoginPage = () => {
 
       {account === 'login' ? (
         <Wrapper>
-          <TextField variant="standard" label="UserName" />
-          <TextField
+          <StyledTextField
+            variant="standard"
+            label="Username"
+            name="username"
+            value={loginData.username}
+            onChange={onInputChange}
+          />
+         
+          <StyledTextField
             variant="standard"
             label="Password"
-            type={showPassword ? 'text' : 'password'} // Toggle type based on showPassword state
+            name="password"
+            type={showPassword ? 'text' : 'password'}
+            value={loginData.password}
+            onChange={onInputChange}
           />
+          
+          
           <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'} {/* Toggle button text based on showPassword state */}
+            {showPassword ? 'Hide' : 'Show'}
           </Button>
           {error && <Error>{error}</Error>}
 
-          <LoginButton variant="contained">Login</LoginButton>
+          <LoginButton variant="contained" onClick={handleLogin}>
+            Login
+          </LoginButton>
           <Typography style={{ textAlign: 'center' }}>OR</Typography>
           <SignupButton onClick={toggleSignup}>Create an Account</SignupButton>
         </Wrapper>
       ) : (
         <Wrapper>
-          <TextField variant="standard" onChange={onInputChange} name="name" label="Enter Name" />
-          <TextField variant="standard" onChange={onInputChange} name="username" label="User Name" />
+          <TextField
+            variant="standard"
+            onChange={onInputChange}
+            name="name"
+            label="Enter Name"
+            value={signupData.name}
+          />
+          <TextField
+            variant="standard"
+            onChange={onInputChange}
+            name="username"
+            label="User Name"
+            value={signupData.username}
+          />
           <TextField
             variant="standard"
             onChange={onInputChange}
             name="password"
             label="Password"
-            type={showPassword ? 'text' : 'password'} // Toggle type based on showPassword state
+            type={showPassword ? 'text' : 'password'}
+            value={signupData.password}
           />
           <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'} {/* Toggle button text based on showPassword state */}
+            {showPassword ? 'Hide' : 'Show'}
           </Button>
           {error && <Error>{error}</Error>}
-          <SignupButton onClick={signupUser}>Sign Up</SignupButton>
+          <SignupButton onClick={handleSignup}>Sign Up</SignupButton>
           <Typography style={{ textAlign: 'center' }}>OR</Typography>
           <LoginButton variant="contained" onClick={toggleSignup}>
             Already have an account
+          
           </LoginButton>
         </Wrapper>
       )}
