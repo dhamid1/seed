@@ -22,6 +22,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         <Image src={Images} alt="logo" />
       </Link>
       <ul>
+
         {isLoggedIn && (
           <li>
             <NavLink to="/Myjournal">My Journal</NavLink>
@@ -48,7 +49,9 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
             <NavLink onClick={handleLogout}>Logout</NavLink>
           </li>
         )}
+
       </ul>
+
     </nav>
   );
 };
