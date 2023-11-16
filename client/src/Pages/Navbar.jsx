@@ -4,6 +4,7 @@ import Images from './Images/seed_logo.png';
 import { useNavigate } from 'react-router';
 import './Navbar.css';
 import { styled } from '@mui/material';
+import settingsIcon from './Images/settings.png';
 
 const Image = styled('img')({
   width: 'auto',
@@ -22,6 +23,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         <Image src={Images} alt="logo" />
       </Link>
       <ul>
+
         {isLoggedIn && (
           <li>
             <NavLink to="/Myjournal">My Journal</NavLink>
@@ -44,11 +46,22 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
           </li>
         )}
         {isLoggedIn && (
+        <li>
+          <NavLink to="/Settings">
+            <img src={settingsIcon} alt="Settings" style={{ width: '32px', height: '32px' }} />
+          </NavLink>
+        </li>
+        )}
+
+        {isLoggedIn && (
           <li>
             <NavLink onClick={handleLogout}>Logout</NavLink>
           </li>
         )}
+        
+
       </ul>
+
     </nav>
   );
 };
