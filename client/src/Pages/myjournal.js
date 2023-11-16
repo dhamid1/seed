@@ -76,7 +76,8 @@ const entryBoxStyle = {
   overflow: 'hidden',
   background: '#d08447', // Set the background color to rgb(205, 118, 25)
   color: 'black', // Set text color to black
-  textAlign: 'left',
+  textAlign: 'center',
+  borderRadius: '75px',
 };
 
 const entryBoxContainerStyle = {
