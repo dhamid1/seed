@@ -18,7 +18,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
   return (
     <nav>
       <Link to="/" className="title">
-        <Image src={Images} alt="logo"/>
+        <Image className='logoImage' src={Images} alt="logo"/>
       </Link>
       <ul>
       {isLoggedIn && (

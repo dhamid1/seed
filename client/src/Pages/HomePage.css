@@ -9,7 +9,7 @@
   }
   .header {
     background-color: #f0d4cd;
-    height: 250px;
+    height: 200px;
     width: auto;
   }
   .headerContainer {
@@ -32,31 +32,32 @@
   }
 
   .couplepicHeader {
-    height: 250px;
-    width: 422px;
+    height: 200px;
+    width: 342px;
     position: relative;
     float: left;
-    margin-right: 200px
+    margin-right: 15px
   }
   .feature{
-    padding-top: 50px;
-    height: 350px;
+    padding-top: 20px;
+    height: 240px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 20px;
   }
   .featureContainer {
-    width: 1000px;
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }
   .featureHeaderContainer {
-    width: 1300px;
+    width: 1200px;
     margin-left: 0;
     margin-right: auto;
   }
   .featureTitle{
     color: #ffffff;
-    font-size: 50px;
+    font-size: 40px;
     text-align: left;
   }
   .featureText{
@@ -84,13 +85,13 @@
 
   }
   .r2gphone{
-    height: 300px;
-    width: 149px;
+    height: 200px;
+    width: 100px;
     padding-right: 100px ;
   }
   .r2gcouple {
-    height: 300px;
-    width: 407px;
+    height: 200px;
+    width: 271px;
   }
 
   .quiz {
@@ -98,23 +99,23 @@
   }
 
   .quizImg{
-    width: 298px;
-    height: 300px;
+    width: 199px;
+    height: 200px;
   }
   .resourceCouple {
-    width: 355px;
-    height: 300px;
+    width: 237px;
+    height: 200px;
 
   }
   .communityImage {
-    width: 425px;
-    height: 300px;
+    width: 283px;
+    height: 200px;
   }
   .familyGame {
     width: 355px;
-    height: 300px;
+    height: 150px;
   }
   .familyGame {
-    width: 313px;
-    height: 300px;
+    width: 209px;
+    height: 200px;
   }

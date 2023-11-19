@@ -1,6 +1,9 @@
 .active{
     background-color: rgb(113, 77, 10);
 }
+.logoImage {
+    height: 50px;
+}
 nav{
     display:flex;
     justify-content: space-between;
