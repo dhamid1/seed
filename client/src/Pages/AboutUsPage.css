@@ -7,12 +7,12 @@
     min-height: 100vh; /* Minimum height for scrolling */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
   }
-
+  
   .about-us-content {
     margin: 0 auto;
     max-width: 800px; /* Limit content width */
   }
-
+  
 .mission-statement {
   text-align: left;
 }
@@ -23,11 +23,11 @@ h1 {
   font-size: 50px; /* Increase the font size to make it a little bigger */
 }
 
-
+  
   p {
     color: #333; /* Change the paragraph text color */
   }
-
+  
 /* AboutUsPage.css */
 .centered-image {
   display: block; /* Ensure the image is a block element */
@@ -36,9 +36,6 @@ h1 {
   height: auto; /* Maintain the image's aspect ratio */
 }
 
-.centered-text-container {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 800px; /* Adjust this value to control the maximum width of the text container */
-  padding: 20px;
-}
+  
+
+  
