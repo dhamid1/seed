@@ -6,7 +6,7 @@ import './Navbar.css';
 import { styled} from '@mui/material';
 
 const Image = styled('img')({
-width: 'auto',
+width: '200px',
 });
 
 export const Navbar = ({ isLoggedIn, onLogout }) => {
@@ -18,7 +18,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
   return (
     <nav>
       <Link to="/" className="title">
-        <Image className='logoImage' src={Images} alt="logo"/>
+        <Image src={Images} alt="logo"/>
       </Link>
       <ul>
       {isLoggedIn && (

@@ -37,7 +37,7 @@ in communication.</p>
           <div className="featureContainer">
           <img src={quizImage} className="quizImg featureImageLeft" alt="Header Couple"/>
           <h2 className='featureTitle' >Quiz</h2>
-          <p className='featureTextBurntOrange'>Plant and Grow a schedule together that you can both actively edit and custmonize together.</p>
+          <p className='featureText BurntOrange'>Plant and Grow a schedule together that you can both actively edit and custmonize together.</p>
         
           </div>
         </div>

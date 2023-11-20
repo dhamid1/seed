@@ -27,8 +27,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Myjournal" element={<Myjournal />} />
-        {/* Pass isLoggedIn and setLoggedIn to the LoginPage component */}
         <Route path="/Ready2Go" element={<Ready2Go />} />
+        {/* Pass isLoggedIn and setLoggedIn to the LoginPage component */}
         <Route path="/LoginPage" element={<LoginPage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/Account" element={<AccountPage />} />
         <Route path="/AboutUs" element={<AboutUsPage />} />
