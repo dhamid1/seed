@@ -1,0 +1,28 @@
+/* Add these CSS rules to your Settings.css file */
+
+.settings-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  
+  .profile-section,
+  .subscription-section,
+  .billing-section {
+    height: 100%; /* Set a fixed height for each section */
+  }
+  
+  /* Optional: Adjust the width of each section */
+  .settings-container > * {
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .settings-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FC975F;
+  }
+  

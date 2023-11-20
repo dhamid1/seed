@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Box, TextField, Button, styled, Typography } from '@mui/material';
 import Images from './Images/login-flower.png';
 import { API } from '../../src/Pages/service/api.js';
+import { useNavigate } from 'react-router-dom';
+
 
 const Component = styled(Box)`
   width: 500px;
@@ -20,10 +22,19 @@ const StyledTextField = styled(TextField)`
   && {
     /* Add your custom styles here */
     font-size: 20px;
-    background-color: white;
+    background: transparent;
     border-radius: 15px;
     padding: 10px;
     margin-bottom: 15px;
+  }
+  .password-toggle-button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    position: absolute;
+    font-size: 12px;
+    right: 0px;
+    top: 0%;
   }
 `;
 
@@ -57,9 +68,13 @@ const LoginButton = styled(Button)`
   background: #b4c078;
   color: #fff;
   height: 45px;
-  font-size: 30px;
+  font-size: 15px;
   border-radius: 25px;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin: 0 auto;
+  width: 200px;
+  
+  
 `;
 
 const SignupButton = styled(Button)`
@@ -67,9 +82,12 @@ const SignupButton = styled(Button)`
   background: #fff;
   color: #2874f0;
   height: 45px;
-  font-size: 25px;
+  font-size: 15px;
   border-radius: 25px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 10px;
 `;
 
 const Error = styled(Typography)`
@@ -78,9 +96,11 @@ const Error = styled(Typography)`
   line-height: 0;
   margin-top: 10px;
   font-weight: 600;
+  margin-bottom: 15px;
 `;
 
 export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
+  const navigate = useNavigate();
   
   const [account, toggleAccount] = useState('login');
   const [loginData, setLoginData] = useState({
@@ -118,6 +138,7 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
       if (response.isSuccess) {
         setError(''); // Clear any previous error messages
         setLoggedIn(true); 
+        navigate('/');
       } else {
         setError('Login failed. Please check your credentials.');
       }
@@ -138,7 +159,7 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
           username: '',
           password: '',
         });
-        toggleAccount('login');
+        toggleAccount('/login');
       } else {
         setError('Something went wrong! Please try again later.');
       }
@@ -164,19 +185,24 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
             onChange={onInputChange}
           />
          
-          <StyledTextField
+         <StyledTextField
             variant="standard"
             label="Password"
             name="password"
             type={showPassword ? 'text' : 'password'}
             value={loginData.password}
             onChange={onInputChange}
+            InputProps={{
+              endAdornment: (
+                <Button
+                  className="password-toggle-button"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </Button>
+              ),
+            }}
           />
-          
-          
-          <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'}
-          </Button>
           {error && <Error>{error}</Error>}
 
           <LoginButton variant="contained" onClick={handleLogin}>
@@ -201,17 +227,24 @@ export const LoginPage = ({ isLoggedIn, setLoggedIn }) => {
             label="User Name"
             value={signupData.username}
           />
-          <TextField
+          <StyledTextField
             variant="standard"
-            onChange={onInputChange}
-            name="password"
             label="Password"
+            name="password"
             type={showPassword ? 'text' : 'password'}
-            value={signupData.password}
+            value={loginData.password}
+            onChange={onInputChange}
+            InputProps={{
+              endAdornment: (
+                <Button
+                  className="password-toggle-button"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </Button>
+              ),
+            }}
           />
-          <Button variant="contained" onClick={togglePasswordVisibility}>
-            {showPassword ? 'Hide' : 'Show'}
-          </Button>
           {error && <Error>{error}</Error>}
           <SignupButton onClick={handleSignup}>Sign Up</SignupButton>
           <Typography style={{ textAlign: 'center' }}>OR</Typography>
