@@ -9,7 +9,7 @@
   }
   .header {
     background-color: #f0d4cd;
-    height: 250px;
+    height: 175px;
     width: auto;
   }
   .headerContainer {
@@ -21,7 +21,7 @@
     color: #3a3e59;
     font-size: 30px;
     text-align: left;
-    padding-top: 20px;
+    padding-top: 5px;
   }
   .buttonHeader{
     background-color: #f4c675;
@@ -32,8 +32,8 @@
   }
 
   .couplepicHeader {
-    height: 250px;
-    width: 422px;
+    height: 175px;
+    width: auto;
     position: relative;
     float: left;
     margin-right: 200px

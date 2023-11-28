@@ -1,22 +1,48 @@
-import React from 'react';
-import './Ready2Go.css'; // Import a CSS file for styling
-import './HomePage.css'; // Import a CSS file for styling
+//import React, { useEffect, useState } from 'react';
+import './Ready2Go.css'; 
+import './HomePage.css';
+/*import Banner from '../components/Banner';*/
+import R2GBtnStart from '../components/R2GBtnStart';
 
 const Ready2Go = () => {
   return (
-    <div className="ready2go">
-        <header>
-    Hello World
-    </header>
-    <div className='r2gBox'>
-      <h2 >Ready 2 Go?</h2>
-        <button className= "ready2goBtn">
-            Ready?
-        </button>
-    </div>
-    </div>
+  < R2GBtnStart />
   );
+  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // useEffect(() => {
+  //   const ready2goBtn = document.querySelector('.ready2goBtn');
+
+  //   const handleMouseMove = (e) => {
+  //     const x = e.pageX - ready2goBtn.offsetLeft;
+  //     const y = e.pageY - ready2goBtn.offsetTop;
+  //     setMousePosition({ x, y });
+  //   };
+
+  //   ready2goBtn.addEventListener('mousemove', handleMouseMove);
+
+  //   // Clean up
+  //   return () => {
+  //     ready2goBtn.removeEventListener('mousemove', handleMouseMove);
+  //   };
+  // }, []);
+
+  // return (
+  //   <div className="ready2go">
+  //     <header>
+  //       <Banner />
+  //     </header>
+  //     <div className='r2gBox'>
+  //       <h2>Ready 2 Go?</h2>
+  //       <button 
+  //         className="ready2goBtn"
+  //         style={{ '--x': `${mousePosition.x}px`, '--y': `${mousePosition.y}px` }}
+  //       >
+  //         <span>Ready?</span>
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
 };
-// this page will change the home page to whatever we want! if we want to link 
-//stuff just let me know and ill look around
+
 export default Ready2Go;
