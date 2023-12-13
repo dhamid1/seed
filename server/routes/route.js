@@ -2,7 +2,7 @@
 import express from 'express';
 import User from '../model/user.js';
 import bcrypt from 'bcrypt';
-import { addEntry, getEntries, updateEntry , deleteEntry} from '../controller/journal-contorller.js';
+
 
 const router = express.Router();
 
@@ -34,6 +34,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/process-message', async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    const witResponse = await processMessage(message);
+    // Handle further processing and send a response to the client
+    res.json({ witResponse });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 router.post('/signup', async (req, res) => {
   try {
