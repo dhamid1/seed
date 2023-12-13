@@ -10,6 +10,7 @@ import AboutUsPage from './Pages/AboutUsPage';
 import ContactUsPage from './Pages/ContactUs';
 import BottomNavbar from './Pages/BottomNavbar.jsx';
 import Settings from './Pages/Settings.js';
+import Chatbot from "./Pages/Chatbot.js";
 
 
   
@@ -39,6 +40,7 @@ import Settings from './Pages/Settings.js';
         {/* Pass isLoggedIn and setLoggedIn to the LoginPage component */}
         <Route path="/LoginPage" element={<LoginPage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/Account" element={<AccountPage />} />
+        <Route path="/AskAI" element={<Chatbot />} />
         <Route path="/AboutUs" element={<AboutUsPage />} />
         <Route path="/ContactUs" element={<ContactUsPage />} />
 

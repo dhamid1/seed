@@ -24,9 +24,14 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
       </Link>
       <ul>
 
+      <li>
+            <NavLink to="/AskAI">AskAI</NavLink>
+      </li>
+
+
         {isLoggedIn && (
           <li>
-            <NavLink to="/Myjournal">My Journal</NavLink>
+            <NavLink to="/Myjournal">Journal</NavLink>
           </li>
         )}
         {/* Conditionally render the "Login" link */}
@@ -40,11 +45,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
             <NavLink to="/Account">Account</NavLink>
           </li>
         )}
-        {isLoggedIn && (
-          <li>
-            <NavLink to="/Profile">Profile</NavLink>
-          </li>
-        )}
+       
         {isLoggedIn && (
         <li>
           <NavLink to="/Settings">
