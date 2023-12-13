@@ -1,5 +1,4 @@
-import React, { useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 const containerStyle = {
   display: 'flex',
@@ -35,36 +34,12 @@ const buttonContainerStyle = {
 };
 
 const buttonStyle = {
-  borderRadius: '20px', // Make the button oval
-  padding: '10px', // Adjust padding for a more balanced look
-  margin: '5px', // Add some margin between buttons
-  background: '#d08447', // Background color a bit darker than the page background
-  color: 'white', // Text color
-  border: 'none', // Remove default button border
+  marginLeft: '10px',
+  padding: '10px',
+  background: '#464552',
+  color: 'white',
+  border: 'none',
   cursor: 'pointer',
-  transition: 'background 0.1s ', // Add transition for a fade effect on hover
-  // Add hover effect
-  ':hover': {
-    background: '#f68847', // Darken the background color on hover
-  },
-};
-
-const ovalButtonStyle = {
-  borderRadius: '20px', // Make the button oval
-  padding: '10px', // Adjust padding for a more balanced look
-  margin: '5px', // Add some margin between buttons
-  marginLeft: '50px',
-  background: '#d08447', // Background color a bit darker than the page background
-  color: 'white', // Text color
-  border: 'none', // Remove default button border
-  cursor: 'pointer',
-  transition: 'background 0.3s ease-in-out', // Add transition for a fade effect on hover
-
-  // Add hover effect
-  ':hover': {
-    background: '#6d5e5e', // Darken the background color on hover
-  },
-
 };
 
 const entryBoxStyle = {
@@ -74,10 +49,8 @@ const entryBoxStyle = {
   width: '100%',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
   overflow: 'hidden',
-  background: '#d08447', // Set the background color to rgb(205, 118, 25)
+  background: 'white', // Set the background color to rgb(205, 118, 25)
   color: 'black', // Set text color to black
-  textAlign: 'center',
-  borderRadius: '75px',
 };
 
 const entryBoxContainerStyle = {
@@ -100,11 +73,6 @@ export const Myjournal = () => {
   const [editIndex, setEditIndex] = useState(-1);
   const [editedEntry, setEditedEntry] = useState({ title: '', content: '', timestamp: '' });
 
-  useEffect(() => {
-    // Fetch entries when component mounts
-    getJournalEntries();
-  }, []);
-
   const handleJournalEntryChange = (e) => {
     setJournalEntry({ ...journalEntry, content: e.target.value });
   };
@@ -113,19 +81,12 @@ export const Myjournal = () => {
     setJournalEntry({ ...journalEntry, title: e.target.value });
   };
 
-
   const handleAddEntry = () => {
     if (journalEntry.content) {
       const timestamp = new Date().toLocaleString();
       setJournalEntry({ ...journalEntry, timestamp });
-
-      // Send a request to add a new entry
-      axios.post('/api/addEntry', journalEntry)
-        .then(response => {
-          setEntries([...entries, response.data]);
-          setJournalEntry({ title: '', content: '', timestamp: '' });
-        })
-        .catch(error => console.error('Error adding entry:', error));
+      setEntries([...entries, journalEntry]);
+      setJournalEntry({ title: '', content: '', timestamp: '' });
     }
   };
 
@@ -137,14 +98,8 @@ export const Myjournal = () => {
   const handleSaveEdit = (index) => {
     const updatedEntries = [...entries];
     updatedEntries[index] = editedEntry;
-
-    // Send a request to update the entry
-    axios.post('/api/updateEntry', editedEntry)
-      .then(response => {
-        setEntries(updatedEntries);
-        setEditIndex(-1);
-      })
-      .catch(error => console.error('Error updating entry:', error));
+    setEntries(updatedEntries);
+    setEditIndex(-1);
   };
 
   const handleShare = (entry) => {
@@ -169,26 +124,6 @@ export const Myjournal = () => {
     }
     return text.substring(0, maxCharacters) + '...';
   };
-
-
-  const getJournalEntries = () => {
-    // Fetch all entries from the server
-    axios.get('/api/getEntries')
-      .then(response => setEntries(response.data))
-      .catch(error => console.error('Error getting entries:', error));
-  };
-
-  const handleDelete = (id) => {
-    // Send a request to delete the entry
-    axios.delete(`/api/deleteEntry/${id}`)
-      .then(response => {
-        // Remove the deleted entry from the state
-        setEntries(entries.filter(entry => entry._id !== id));
-      })
-      .catch(error => console.error('Error deleting entry:', error));
-  };
-
-
 
   return (
     <div style={containerStyle}>
@@ -243,12 +178,8 @@ export const Myjournal = () => {
                   <p style={entryContentStyle}>{truncateText(entry.content, 100)}</p>
                   <p>{entry.timestamp}</p>
                   <div style={buttonContainerStyle}>
-                    <button style={ovalButtonStyle} onClick={() => handleEdit(index, entry)}>Edit</button>
-                    <i className="fas fa-edit"></i>
-                    <button style={ovalButtonStyle} onClick={() => handleShare(entry)}>Share</button>
-                    <i className="fas fa-share"></i>
-                    <button style={ovalButtonStyle} onClick={() => handleDelete(entry._id)}>Delete</button>
-                    <i className="fas fa-trash"></i>
+                    <button style={buttonStyle} onClick={() => handleEdit(index, entry)}>Edit</button>
+                    <button style={buttonStyle} onClick={() => handleShare(entry)}>Share</button>
                   </div>
                 </div>
               )}
