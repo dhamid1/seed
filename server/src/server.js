@@ -1,28 +1,25 @@
-// import express from 'express';
+require('dotenv').config(); 
+const cors = require('cors');
+app.use(cors());
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const State = require('./models/State');
 
+const app = express();
+app.use(bodyParser.json());
 
-// let couplesID = [{
-//     ID: '12345',
-//     ready: 0,
-// }, {
-//     ID: '54321',
-//     ready: 0,
-// }]
+// Connect to MongoDB using environment variable
+mongoose.connect(process.env.MONGODB_URL, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Could not connect to MongoDB', err));
 
-// const app = express();
-// app.use(express.json());
+// ... rest of your code for endpoints ...
 
-// app.put('/api/ready2/:ID/ready', (req, res) => {
-//     const {ID} = req.params;
-//     const  Ready2Go = couplesID.find(a => a.ID === ID);  
-// if (ready2){
-//     ready2.ready += 1;
-//     res.send(`Partner ${ID} is in the Ready2Go click amount is ${ready2.ready}`);
-//     } else {
-//         res.send('This ready doesn\'t exist.');
-//     }
-// });
-
-// app.listen(3000, () =>{
-//     console.log('Server is listening on port 3000');
-// });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
