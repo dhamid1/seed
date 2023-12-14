@@ -59,7 +59,7 @@ const AboutUsPage = () => {
 
       <p>
         We understand the importance of balance in relationships. That's why we've
-        introduced 'Ready to Go,' a feature that allows you to gracefully exit social
+        introduced 'Ready to Go' a feature that allows you to gracefully exit social
         events without pressure. When both partners are ready, it's time to leave,
         ensuring a stress-free departure.
       </p>
