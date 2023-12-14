@@ -39,9 +39,11 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
             <NavLink to="/Myjournal">Journal</NavLink>
           </li>
         )}
-        <li>
-          <NavLink to="/LoginPage">Log In</NavLink>
-        </li>
+         {!isLoggedIn && (
+          <li>
+            <NavLink to="/LoginPage">Log In</NavLink>
+          </li>
+        )}
         {isLoggedIn && (
           <li>
             <NavLink to="/Account">Account</NavLink>
@@ -64,16 +66,6 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         
 
       </ul>
-<ul>
-        {isLoggedIn && (
-          <li>
-            <NavLink to="/Profile">Profile</NavLink>
-          </li>
-        )}
-       </ul>
-      {isLoggedIn && (
-        <button onClick={handleLogout}>Logout</button>
-      )}
     </nav>
   );
 };

@@ -7,10 +7,19 @@ import quizImage from './Images/quiz_image.gif';
 import resCouple from './Images/resourceCouple.png';
 import communityImg from './Images/community_image.gif';
 import familyImg from './Images/familyNightIdeas_image.gif';
-
+import {useNavigate} from 'react-router';
 
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
+  const handleCreateAccountClick = () => {
+    // Navigate to the desired page
+    navigate('/LoginPage'); // Replace '/your-desired-page' with the actual path
+  };
+
+
+
   return (
     <div className="homepage">
      
@@ -20,7 +29,7 @@ const HomePage = () => {
         <p className='headerText'> Release and Organize your thoughts
 through Journaling and experience clarity
 in communication.</p>
-<button className='buttonHeader'>Create Account</button>
+<button className='buttonHeader' onClick={handleCreateAccountClick}>Create Account</button>
 </div>
       </div>  
 
