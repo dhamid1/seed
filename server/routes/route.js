@@ -2,7 +2,7 @@
 import express from 'express';
 import User from '../model/user.js';
 import bcrypt from 'bcrypt';
-import { addEntry, getEntries, updateEntry , deleteEntry} from '../controller/journal-contorller.js';
+
 
 const router = express.Router();
 
@@ -56,14 +56,5 @@ router.post('/signup', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the user' });
   }
 });
-
-
-router.post('/addEntry', addEntry);
-
-// Route to get all journal entries
-router.get('/getEntries', getEntries);
-
-router.post('/updateEntry', updateEntry);
-router.delete('/deleteEntry/:id', deleteEntry);
 
 export default router;
