@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Images from './Images/seed_logo.png';
-import { useNavigate } from 'react-router';
+import { useNavigate} from 'react-router'; 
 import './Navbar.css';
-import { styled } from '@mui/material';
-import settingsIcon from './Images/settings.png';
+import { styled} from '@mui/material';
+
+
 
 const Image = styled('img')({
-  width: 'auto',
+width: '200px',
 });
 
 export const Navbar = ({ isLoggedIn, onLogout }) => {
   const history = useNavigate();
   const handleLogout = () => {
     onLogout();
-    history('/Myjournal'); // Use history('/LoginPage') to navigate to the login page
+    history.apply('/LoginPage');
   };
-
   return (
     <nav>
       <Link to="/" className="title">
-        <Image src={Images} alt="logo" />
+        <Image src={Images} alt="logo"/>
       </Link>
       <ul>
 
@@ -29,13 +29,17 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
       </li>
 
 
+      {isLoggedIn && (
+          <li>
+            <NavLink to="/Ready2Go">Ready2Go</NavLink>
+          </li>
+        )}
         {isLoggedIn && (
           <li>
             <NavLink to="/Myjournal">Journal</NavLink>
           </li>
         )}
-        {/* Conditionally render the "Login" link */}
-        {!isLoggedIn && (
+         {!isLoggedIn && (
           <li>
             <NavLink to="/LoginPage">Log In</NavLink>
           </li>
@@ -49,7 +53,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         {isLoggedIn && (
         <li>
           <NavLink to="/Settings">
-            <img src={settingsIcon} alt="Settings" style={{ width: '32px', height: '32px' }} />
+            Settings
           </NavLink>
         </li>
         )}
@@ -62,7 +66,6 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         
 
       </ul>
-
     </nav>
   );
 };
