@@ -28,6 +28,14 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
             <NavLink to="/AskAI">AskAI</NavLink>
       </li>
 
+      {isLoggedIn && (
+          <li>
+            <NavLink to="/Ready2Go">Ready2Go</NavLink>
+          </li>
+        )}
+
+        
+
 
         {isLoggedIn && (
           <li>

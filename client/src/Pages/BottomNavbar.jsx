@@ -45,7 +45,7 @@ const BottomNavbar = () => {
     <div>
       <HeaderImage />
       <div style={navbarStyle}>
-        <a style={linkStyle} href="#home">
+        <a style={linkStyle} href="/">
           Home
         </a>
         <a style={linkStyle} href="/AboutUs">
@@ -54,7 +54,7 @@ const BottomNavbar = () => {
         <a style={linkStyle} href="/ContactUs">
           Contact Us
         </a>
-        <a style={linkStyle} href="tel:988">
+        <a>
           Suicide Hotline: 988
         </a>
       </div>

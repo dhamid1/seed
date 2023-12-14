@@ -9,7 +9,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    height: 62vh; /* Ensure the chatbot container takes the full height of the viewport */
+    height: 50vh; /* Ensure the chatbot container takes the full height of the viewport */
     position: relative; /* Ensure relative positioning for child elements */
   }
   
