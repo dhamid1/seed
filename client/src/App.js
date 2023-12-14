@@ -9,7 +9,6 @@ import { AccountPage } from './Pages/Account';
 import AboutUsPage from './Pages/AboutUsPage';
 import ContactUsPage from './Pages/ContactUs';
 import BottomNavbar from './Pages/BottomNavbar.jsx';
-import Settings from './Pages/Settings.js';
 import Chatbot from "./Pages/Chatbot.js";
 
 function App() {

@@ -5,6 +5,8 @@ import { useNavigate} from 'react-router';
 import './Navbar.css';
 import { styled} from '@mui/material';
 
+
+
 const Image = styled('img')({
 width: '200px',
 });
@@ -49,7 +51,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         {isLoggedIn && (
         <li>
           <NavLink to="/Settings">
-            <img src={settingsIcon} alt="Settings" style={{ width: '32px', height: '32px' }} />
+            Settings
           </NavLink>
         </li>
         )}
@@ -62,7 +64,7 @@ export const Navbar = ({ isLoggedIn, onLogout }) => {
         
 
       </ul>
-
+<ul>
         {isLoggedIn && (
           <li>
             <NavLink to="/Profile">Profile</NavLink>
